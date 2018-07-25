@@ -5,14 +5,14 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
-import java.util.List;
-
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class TrelloBoardDto {
-    private String name;
+public class TrelloListDto {
+    //This is used when Json value name is different from what we want in our app
+    //@JsonProperty("id")
     private String id;
-    private List<TrelloListDto> lists;
+    private String name;
+    private boolean isClosed;
 }
