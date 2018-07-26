@@ -2,6 +2,7 @@ package com.crud.tasks.repository;
 
 import com.crud.tasks.domain.TrelloBadgeDto;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -14,5 +15,6 @@ public class CreatedTrelloCard {
     private String id;
     private String name;
     private String shortUrl;
+    @JsonProperty("badges")
     private TrelloBadgeDto trelloBadgeDto;
 }
