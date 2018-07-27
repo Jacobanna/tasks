@@ -15,4 +15,11 @@ public class TrelloCardDto {
     private String listId;
     @JsonProperty("badges")
     private TrelloBadgeDto trelloBadgeDto;
+
+    public TrelloCardDto(String name, String description, String pos, String listId) {
+        this.name = name;
+        this.description = description;
+        this.pos = pos;
+        this.listId = listId;
+    }
 }
