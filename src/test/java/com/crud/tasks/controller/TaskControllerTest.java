@@ -98,24 +98,23 @@ public class TaskControllerTest {
         verify(dbService, times(1)).deleteTask(any());
     }
 
-//    @Test
-//    public void shouldUpdateTask() throws Exception {
-//        //Given
-//        Task task = new Task(1L, "task title", "task content");
-//        TaskDto taskDto = new TaskDto(1L, "task title", "task content");
-//        when(taskMapper.mapToTask(taskDto)).thenReturn(task);
-//        when(dbService.saveTask(taskMapper.mapToTask(taskDto))).thenReturn(task);
-//        when(taskMapper.mapToTaskDto(dbService.saveTask(taskMapper.mapToTask(taskDto)))).thenReturn(taskDto);
-//        Gson gson = new Gson();
-//        String jsonContent = gson.toJson(taskDto);
-//        System.out.println(jsonContent);
-//        //When&Then
-//        mockMvc.perform(put("/v1/task/updateTask")
-//                .contentType(MediaType.APPLICATION_JSON)
-//                .content(jsonContent))
-//                .andExpect(status().isOk())
-//                .andExpect(jsonPath("$.id", is(1)))
-//                .andExpect(jsonPath("$.title", is("task title")))
-//                .andExpect(jsonPath("$.content", is("task content")));
-//    }
+    @Test
+    public void shouldUpdateTask() throws Exception {
+        //Given
+        Task task = new Task(1L, "task title", "task content");
+        TaskDto taskDto = new TaskDto(1L, "task title", "task content");
+        when(taskMapper.mapToTask(taskDto)).thenReturn(task);
+        when(dbService.saveTask(any())).thenReturn(task);
+        when(taskMapper.mapToTaskDto(any())).thenReturn(taskDto);
+        Gson gson = new Gson();
+        String jsonContent = gson.toJson(taskDto);
+        //When&Then
+        mockMvc.perform(put("/v1/task/updateTask")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(jsonContent))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.id", is(1)))
+                .andExpect(jsonPath("$.title", is("task title")))
+                .andExpect(jsonPath("$.content", is("task content")));
+    }
 }
