@@ -32,17 +32,22 @@ dependencies {
     compile('mysql:mysql-connector-java')
     //HEROKU
 //    compile('org.postgresql:postgresql')
-
     testCompile('org.springframework.boot:spring-boot-starter-test')
+
+//    Transforming to JSON
+    compile('com.google.code.gson:gson:2.8.2')
+//    Useful additional endpoints for REST API
+    compile('org.springframework.boot:spring-boot-starter-actuator')
 
 //    providedRuntime("org.springframework.boot:spring-boot-starter-tomcat")
 
 //    Swagger
     compile('io.springfox:springfox-swagger2:2.7.0')
     compile('io.springfox:springfox-swagger-ui:2.7.0')
-
 //    E-Mail
     compile('org.springframework.boot:spring-boot-starter-mail:1.5.7.RELEASE')
+
+    compile 'com.jayway.jsonpath:json-path:2.3.0'
 }
 
 //war {
