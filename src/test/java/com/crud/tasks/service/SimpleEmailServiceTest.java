@@ -5,9 +5,12 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
+import org.mockito.Mockito;
 import org.mockito.runners.MockitoJUnitRunner;
+import org.springframework.mail.MailMessage;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.mail.javamail.MimeMessagePreparator;
 
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
@@ -23,23 +26,22 @@ public class SimpleEmailServiceTest {
     public void placeHolder() {
         ;
     }
-//    OLD
-//    @Test
-//    public void shouldSendEmail() {
-//        //Given
-//        Mail mail = new Mail("test@test.com", "Test", "Test Message", "cc@test.com");
-//        SimpleMailMessage mailMessage = new SimpleMailMessage();
-//        mailMessage.setTo(mail.getReceiver());
-//        mailMessage.setSubject(mail.getSubject());
-//        mailMessage.setText(mail.getMessage());
-//        mailMessage.setCc(mail.getCc());
-//        //When
-//        simpleEmailService.send(mail);
-//        //Then
-//        verify(javaMailSender, times(1)).send(mailMessage);
-//    }
 
-//    NEW
+    @Test
+    public void shouldSendEmail() {
+        //Given
+        Mail mail = new Mail("test@test.com", "Test", "Test Message");
+        SimpleMailMessage mailMessage = new SimpleMailMessage();
+        mailMessage.setTo(mail.getReceiver());
+        mailMessage.setSubject(mail.getSubject());
+        mailMessage.setText(mail.getMessage());
+//        mailMessage.setCc(mail.getCc());
+        //When
+        simpleEmailService.send(mail);
+        //Then
+        verify(javaMailSender, times(1)).send(mailMessage);
+    }
+
 //    @Test
 //    public void shouldSendEmail() {
 //        //Given
@@ -51,6 +53,6 @@ public class SimpleEmailServiceTest {
 //        //When
 //        simpleEmailService.send(mail);
 //        //Then
-//        verify(javaMailSender, times(1)).send(mailMessage);
+//        verify(javaMailSender, times(1)).send(Mockito.any(MimeMessagePreparator.class));
 //    }
 }
