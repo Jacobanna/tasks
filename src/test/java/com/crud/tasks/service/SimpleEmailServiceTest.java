@@ -23,6 +23,7 @@ public class SimpleEmailServiceTest {
     public void placeHolder() {
         ;
     }
+//    OLD
 //    @Test
 //    public void shouldSendEmail() {
 //        //Given
@@ -32,6 +33,21 @@ public class SimpleEmailServiceTest {
 //        mailMessage.setSubject(mail.getSubject());
 //        mailMessage.setText(mail.getMessage());
 //        mailMessage.setCc(mail.getCc());
+//        //When
+//        simpleEmailService.send(mail);
+//        //Then
+//        verify(javaMailSender, times(1)).send(mailMessage);
+//    }
+
+//    NEW
+//        @Test
+//    public void shouldSendEmail() {
+//        //Given
+//        Mail mail = new Mail("test@test.com", "Test", "Test Message");
+//        SimpleMailMessage mailMessage = new SimpleMailMessage();
+//        mailMessage.setTo(mail.getReceiver());
+//        mailMessage.setSubject(mail.getSubject());
+//        mailMessage.setText(mail.getMessage());
 //        //When
 //        simpleEmailService.send(mail);
 //        //Then

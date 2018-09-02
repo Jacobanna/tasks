@@ -13,5 +13,5 @@ public class Mail {
     private String receiver;
     private String subject;
     private String message;
-    private String cc;
+//    private String cc;
 }
