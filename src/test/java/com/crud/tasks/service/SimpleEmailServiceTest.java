@@ -40,7 +40,7 @@ public class SimpleEmailServiceTest {
 //    }
 
 //    NEW
-//        @Test
+//    @Test
 //    public void shouldSendEmail() {
 //        //Given
 //        Mail mail = new Mail("test@test.com", "Test", "Test Message");
