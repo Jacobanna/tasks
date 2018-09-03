@@ -22,10 +22,20 @@ public class SimpleEmailServiceTest {
     @Mock
     private JavaMailSender javaMailSender;
 
-    @Test
-    public void placeHolder() {
-        ;
-    }
+//    @Test
+//    public void shouldSendEmail() {
+//        //Given
+//        Mail mail = new Mail("test@test.com", "Test", "Test Message");
+//        SimpleMailMessage mailMessage = new SimpleMailMessage();
+//        mailMessage.setTo(mail.getReceiver());
+//        mailMessage.setSubject(mail.getSubject());
+//        mailMessage.setText(mail.getMessage());
+////        mailMessage.setCc(mail.getCc());
+//        //When
+//        simpleEmailService.send(mail);
+//        //Then
+//        verify(javaMailSender, times(1)).send(mailMessage);
+//    }
 
     @Test
     public void shouldSendEmail() {
@@ -35,24 +45,9 @@ public class SimpleEmailServiceTest {
         mailMessage.setTo(mail.getReceiver());
         mailMessage.setSubject(mail.getSubject());
         mailMessage.setText(mail.getMessage());
-//        mailMessage.setCc(mail.getCc());
         //When
         simpleEmailService.send(mail);
         //Then
-        verify(javaMailSender, times(1)).send(mailMessage);
+        verify(javaMailSender, times(1)).send(Mockito.any(MimeMessagePreparator.class));
     }
-
-//    @Test
-//    public void shouldSendEmail() {
-//        //Given
-//        Mail mail = new Mail("test@test.com", "Test", "Test Message");
-//        SimpleMailMessage mailMessage = new SimpleMailMessage();
-//        mailMessage.setTo(mail.getReceiver());
-//        mailMessage.setSubject(mail.getSubject());
-//        mailMessage.setText(mail.getMessage());
-//        //When
-//        simpleEmailService.send(mail);
-//        //Then
-//        verify(javaMailSender, times(1)).send(Mockito.any(MimeMessagePreparator.class));
-//    }
 }
