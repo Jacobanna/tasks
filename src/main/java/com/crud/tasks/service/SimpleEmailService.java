@@ -31,6 +31,15 @@ public class SimpleEmailService {
         }
     }
 
+    public void send2(final Mail mail) {
+        try {
+            javaMailSender.send(createMimeMessage2(mail));
+            LOGGER.info("Email has been sent");
+        } catch (MailException e) {
+            LOGGER.error("Failed to process email sending: ", e.getMessage(), e);
+        }
+    }
+
     private SimpleMailMessage createMailMessage(final Mail mail) {
         SimpleMailMessage mailMessage = new SimpleMailMessage();
         mailMessage.setTo(mail.getReceiver());
@@ -48,6 +57,15 @@ public class SimpleEmailService {
             messageHelper.setTo(mail.getReceiver());
             messageHelper.setSubject(mail.getSubject());
             messageHelper.setText(mailCreatorService.buildTrelloCardEmail(mail.getMessage()), true);
+        };
+    }
+
+    private MimeMessagePreparator createMimeMessage2(final Mail mail) {
+        return mimeMessage -> {
+            MimeMessageHelper messageHelper = new MimeMessageHelper(mimeMessage);
+            messageHelper.setTo(mail.getReceiver());
+            messageHelper.setSubject(mail.getSubject());
+            messageHelper.setText(mailCreatorService.buildTasksAvailableEmail(mail.getMessage()), true);
         };
     }
 }
