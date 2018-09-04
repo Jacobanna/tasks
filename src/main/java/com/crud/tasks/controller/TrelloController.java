@@ -17,6 +17,16 @@ public class TrelloController {
     @Autowired
     private TrelloFacade trelloFacade;
 
+    @RequestMapping(method = RequestMethod.GET, value = "/boards")
+    public List<TrelloBoardDto> getTrelloBoards() {
+        return trelloFacade.fetchTrelloBoards();
+    }
+
+    @RequestMapping(method = RequestMethod.POST, value = "/cards")
+    public CreatedTrelloCardDto createdTrelloCard(@RequestBody TrelloCardDto trelloCardDto) {
+        return trelloFacade.createCard(trelloCardDto);
+    }
+
 //    2) NO FACADE
 //    @Autowired
 //    private TrelloService trelloService;
@@ -46,14 +56,4 @@ public class TrelloController {
 //    public CreatedTrelloCardDto createdTrelloCard(@RequestBody TrelloCardDto trelloCardDto) {
 //        return trelloService.createTrelloCard(trelloCardDto);
 //    }
-
-    @RequestMapping(method = RequestMethod.GET, value = "getTrelloBoards")
-    public List<TrelloBoardDto> getTrelloBoards() {
-        return trelloFacade.fetchTrelloBoards();
-    }
-
-    @RequestMapping(method = RequestMethod.POST, value = "createTrelloCard")
-    public CreatedTrelloCardDto createdTrelloCard(@RequestBody TrelloCardDto trelloCardDto) {
-        return trelloFacade.createCard(trelloCardDto);
-    }
 }
