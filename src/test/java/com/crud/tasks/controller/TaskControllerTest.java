@@ -45,7 +45,7 @@ public class TaskControllerTest {
         tasksDto.add(new TaskDto(1L, "task title", "task content"));
         when(taskMapper.mapToTaskDtoList(dbService.getAllTasks())).thenReturn(tasksDto);
         //When&Then
-        mockMvc.perform(get("/v1/task/getTasks")
+        mockMvc.perform(get("/v1/tasks")
                 .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$", hasSize(1)))
@@ -64,7 +64,7 @@ public class TaskControllerTest {
         when(taskMapper.mapToTaskDto(dbService.getTask(taskId).orElseThrow(TaskNotFoundException::new)))
                 .thenReturn(taskDto);
         //When&Then
-        mockMvc.perform(get("/v1/task/getTask?taskId=1")
+        mockMvc.perform(get("/v1/tasks/1")
                 .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.id", is(1)))
@@ -81,7 +81,7 @@ public class TaskControllerTest {
         String jsonContent = gson.toJson(taskDto);
 
         //When&Then
-        mockMvc.perform(post("/v1/task/createTask").
+        mockMvc.perform(post("/v1/tasks").
                 contentType(MediaType.APPLICATION_JSON)
                 .content(jsonContent)
                 .characterEncoding("UTF-8"))
@@ -93,7 +93,7 @@ public class TaskControllerTest {
     public void shouldDeleteTask() throws Exception {
         //Given
         //When&Then
-        mockMvc.perform(delete("/v1/task/deleteTask?taskId=1"))
+        mockMvc.perform(delete("/v1/tasks/1"))
                 .andExpect(status().isOk());
         verify(dbService, times(1)).deleteTask(any());
     }
@@ -109,7 +109,7 @@ public class TaskControllerTest {
         Gson gson = new Gson();
         String jsonContent = gson.toJson(taskDto);
         //When&Then
-        mockMvc.perform(put("/v1/task/updateTask")
+        mockMvc.perform(put("/v1/tasks")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(jsonContent))
                 .andExpect(status().isOk())
